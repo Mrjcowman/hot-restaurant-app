@@ -23,14 +23,14 @@
 
     <main class="container">
         <div class="row">
-            <div class="col s12">
+            <div class="col s12 tables">
                 <h2>Table Reservations</h2>
                 <!-- Table cards go here -->
             </div>
         </div>
         <div class="divider"></div>
         <div class="row">
-            <div class="col s12">
+            <div class="col s12 waitlist">
                 <h2>Waitlist</h2>
                 <!-- Waitlist goes here -->
             </div>
@@ -39,7 +39,88 @@
     
 
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+
+    $.get("/api/tables", function(data) {
+        console.log(data);
+        if(data){
+            let tableNum=1;
+            for(let i=0; i<data.length; i++){
+                console.log(data[i]);
+                const name=data[i].name;
+                const phone=data[i].phone;
+                const email=data[i].email;
+                const id=data[i].ID;
+
+                const cardTemplate = `
+<div class="col s12 l6">
+    <div class="card horizontal">
+        <div class="card-content">
+            <span class="card-title red-text darken-2-text">
+                Table ${tableNum}
+            </span>
+        </div>
+        <div class="card-stacked">
+            <div class="card-content">
+                <ul>
+                    <li>Name: ${name}</li>
+                    <li>Phone: ${phone}</li>
+                    <li>Email: ${email}</li>
+                    <li>ID: ${id}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>`;
+
+                let thisRow = $("<div>").addClass("row").html(cardTemplate);
+                $(".tables").append(thisRow);
+                tableNum++;
+            }
+        }
+    })
+
+    $.get("/api/reserve", function(data) {
+        console.log(data);
+        if(data){
+            let tableNum=1;
+            for(let i=0; i<data.length; i++){
+                console.log(data[i]);
+                const name=data[i].name;
+                const phone=data[i].phone;
+                const email=data[i].email;
+                const id=data[i].ID;
+
+                const cardTemplate = `
+<div class="col s12 l6">
+    <div class="card horizontal">
+        <div class="card-content">
+            <span class="card-title red-text darken-2-text">
+                Position ${tableNum}
+            </span>
+        </div>
+        <div class="card-stacked">
+            <div class="card-content">
+                <ul>
+                    <li>Name: ${name}</li>
+                    <li>Phone: ${phone}</li>
+                    <li>Email: ${email}</li>
+                    <li>ID: ${id}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>`;
+
+                let thisRow = $("<div>").addClass("row").html(cardTemplate);
+                $(".waitlist").append(thisRow);
+                tableNum++;
+            }
+        }
+    })
+    </script>
 </body>
 </html>
