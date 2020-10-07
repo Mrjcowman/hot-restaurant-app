@@ -53,9 +53,12 @@ app.post("/api/reserve", function(req, res) {
 
     if (tables.length < maxTables) {
         tables.push(newTable);
+        newTable.hasReservation = true;
         console.log(tables)
+        
     } else {
         reserves.push(newTable);
+        newTable.hasReservation = false;
         console.log(reserves)
     }
 
