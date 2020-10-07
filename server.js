@@ -34,6 +34,10 @@ app.get("/reserve", function(req, res) {
     res.sendFile(path.join(__dirname, "/html/reserve.html"))
 });
 
+app.get("/admin", function(req, res) {
+    res.sendFile(path.join(__dirname, "/html/admin.html"))
+});
+
 app.get("/api/tables", function(req, res) {
     return res.json(tables);
 })
@@ -65,6 +69,17 @@ app.post("/api/reserve", function(req, res) {
     }
 
     res.json(newTable)
+})
+
+// Delete Requests
+// =========================================================
+app.delete("/api/tables", function(req, res){
+    while(reserves.length>0) reserves.pop();
+    while(tables.length>0) tables.pop();
+
+    console.log("Reservations Cleared!");
+
+    res.json({message: "All reservations cleared!"});
 })
 
 
