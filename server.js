@@ -1,13 +1,40 @@
+// Dependencies
+// ==========================================
+
+const express = require("express");
+const path = require("path");
+
 const http = require("http");
 
+const app = express();
 const PORT = 3000;
 
-function handleRequest(request, response) {
-  response.end("Hot Restaurant App") }
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
 
-const server = http.createServer(handleRequest);
+// Data
+// =============================================
 
-server.listen(PORT, function() {
+const tables = []
+const reserve = []
+
+// Routes 
+// ============================================
+
+app.get("/", function(req, res) {
+    res.sendFile(path.join(__dirname, "home.html"))
+});
+
+app.get("/tables", function(req, res) {
+    return res.json(tables);
+})
+
+app.get("/reserve", function(req, res) {
+    return res.json(reserve);
+})
+
+
+app.listen(PORT, function() {
 
   console.log("Server listening on: http://localhost:" + PORT);
 });
