@@ -45,7 +45,7 @@ app.get("/api/reserve", function(req, res) {
 // Post Requests
 // =========================================================
 
-app.post("/api/reserve"), function(req, res) {
+app.post("/api/reserve", function(req, res) {
 
     var newTable = req.body;
 
@@ -53,12 +53,14 @@ app.post("/api/reserve"), function(req, res) {
 
     if (tables.length < maxTables) {
         tables.push(newTable);
+        console.log(tables)
     } else {
         reserves.push(newTable);
+        console.log(reserves)
     }
 
     res.json(newTable)
-}
+})
 
 
 // Starts the server to begin listening
