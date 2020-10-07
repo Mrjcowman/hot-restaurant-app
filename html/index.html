@@ -7,18 +7,26 @@
 
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="../css/hot-restaurant.css">
 
 </head>
 <body>
     <header class="center-align">
-        <h1 class="red-text darken-4-text">Hot Restaurant</h1>
+        <h1 class="red-text darken-4-text"><i class="material-icons">restaurant</i>Hot Restaurant<i class="material-icons">restaurant</i></h1>
     </header>
-    <main class="container center-align red lighten-4">
-        <p>We only have <span class="numTables">5</span> tables! Book your seat before they are all gone!</p>
-        <hr>
-        <a href="tables" class="waves-effect waves-light btn red">See Tables</a>
-        <a href="reserve" class="waves-effect waves-light btn red">Reserve a Table</a>
+    <main class="container center-align">
+        <div class="row">
+            <div class="col s12">
+                <p class="lead">We only have <span class="numTables">5</span> tables! Book your seat before they are all gone!</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <a href="/tables" class="waves-effect waves-light btn red"><i class="material-icons left">room_service</i> See Tables</a>
+                <a href="/reserve" class="waves-effect waves-light btn red"><i class="material-icons right">book</i>Reserve a Table</a>
+            </div>
+        </div>
     </main>
     
 
